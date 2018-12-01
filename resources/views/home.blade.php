@@ -13,8 +13,11 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+					@guest
+						You are not logged in!
+					@else
+						You are logged in!	
+					@endguest	
                 </div>
             </div>
         </div>
