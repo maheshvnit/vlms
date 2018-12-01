@@ -36,7 +36,7 @@ class EmployeeController extends Controller
 	
 	public function store(Request $request)
     {
-
+		$status = 0;
 
         $inputs = $request->all();
 		
@@ -45,6 +45,15 @@ class EmployeeController extends Controller
 		$inputs['user_id'] = $user_id;
 		$inputs['created_at'] = $crrDate;
 		$inputs['updated_at'] = $crrDate;
+		//from_date
+		//to_date
+		$inputs['from_date'] = date("Y-m-d", strtotime($inputs['from_date']));
+		$inputs['to_date'] = date("Y-m-d", strtotime($inputs['to_date']));
+		
+		/*
+			$date = DateTime::createFromFormat('j-M-Y', '15-Feb-2009');
+			echo $date->format('Y-m-d');		
+		*/
 		
 		/*
 			from_date
@@ -56,16 +65,20 @@ class EmployeeController extends Controller
 			updated_at
 			deleted_at		
 		*/
+		
 		$stored = LeaveEmployee::create($inputs);
-		
-		
-		if($stored && is_array($stored))
+		//dd($stored);
+		if($stored)
+		{
+			$status = 1;
+		}
+		if($status == 0)
 		{
 			return redirect()->back()->withErrors($stored)->withInput();
 		}
 		else
 		{
-			return route('home');
+			return redirect()->route('home'); 
 		}
 		
     }	

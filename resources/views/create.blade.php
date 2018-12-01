@@ -9,7 +9,7 @@
 
                 <div class="card-body">
 
-                    	<form name="emp-aply" action="/employee/store" method="POST">
+                    	<form name="emp-aply" action="/employee" method="POST">
 							@csrf
 						  <div class="form-group">
 							<label for="from_date">From Date</label>
