@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('posts/post/{slug}', ['uses' => 'PostController@post', 'as' => 'posts.post']);
 	
 	Route::resource('posts', 'PostController');    
+	Route::resource('employee', 'EmployeeController');    
     
 
 });
